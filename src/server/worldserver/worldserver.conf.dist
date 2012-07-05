@@ -178,7 +178,7 @@ Compression = 1
 #                     1+  - (Enabled)
 #                     0   - (Disabled, No limit)
 
-PlayerLimit = 100
+PlayerLimit = 0
 
 #
 #    SaveRespawnTimeImmediately
@@ -246,9 +246,9 @@ ChangeWeatherInterval = 600000
 #
 #    PlayerSaveInterval
 #        Description: Time (in milliseconds) for player save interval.
-#        Default:     900000 - (15 min)
+#        Default:     300000 - (5 min)
 
-PlayerSaveInterval = 900000
+PlayerSaveInterval = 300000
 
 #
 #    PlayerSave.Stats.MinLevel
@@ -256,7 +256,7 @@ PlayerSaveInterval = 900000
 #        Default:     0  - (Disabled, Do not save character stats)
 #                     1+ - (Enabled, Level beyond which character stats are saved)
 
-PlayerSave.Stats.MinLevel = 0
+PlayerSave.Stats.MinLevel = 1
 
 #
 #    PlayerSave.Stats.SaveOnlyOnLogout
@@ -353,7 +353,7 @@ LogDB.Opt.ClearTime = 1209600
 #        Default:     0   - (Disabled)
 #                     10+ - (Enabled, Recommended 10+)
 
-MaxCoreStuckTime = 0
+MaxCoreStuckTime = 120
 
 #
 #    AddonChannel
@@ -369,7 +369,7 @@ AddonChannel = 1
 #        Description: Number of threads to update maps.
 #        Default:     1
 
-MapUpdate.Threads = 1
+MapUpdate.Threads = 4
 
 #
 #    CleanCharacterDB
@@ -639,7 +639,7 @@ SQLDriverQueryLogging = 0
 #        Example:     "13 11 9 5" - (Enabled)
 #        Default:     ""          - (Disabled)
 
-LogColors = ""
+LogColors = "13 11 9 5"
 
 #
 #    EnableLogDB
@@ -1377,7 +1377,7 @@ ClientCacheVersion = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Event.Announce = 0
+Event.Announce = 1
 
 #
 #    BeepAtStart
@@ -1425,7 +1425,7 @@ AllowTickets = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled, Experimental as of still being in development)
 
-DungeonFinder.Enable = 0
+DungeonFinder.Enable = 1
 
 #
 #   DBC.EnforceItemAttributes
@@ -1437,37 +1437,6 @@ DungeonFinder.Enable = 0
 DBC.EnforceItemAttributes = 1
 
 #
-
-#######################################################
-#######################################################
-#    Anticheat.Movement.Enable By jacob	
-#        Enable Movement Anticheat
-#        Default: 1 - on	
-#                 0 - off	
-#	
-Anticheat.Movement.Enable = 1	
-	
-#	
-#    Anticheat.Movement.TeleportToPlaneAlarms	
-#        maximum alarms before logging mode will be switched from debug to error (default 50, allowed 20 - 100)	
-#
-	
-Anticheat.Movement.TeleportToPlaneAlarms = 50	
-	
-#	
-#    Anticheat.Movement.MistimingDelta
-#        mistiming intelval between client and serverside (default 15000 ms, allowed 5000 - 50000 ms)	
-#	
-	
-Anticheat.Movement.MistimingDelta = 15000	
-	
-#
-#    Anticheat.Movement.MistimingAlarms	
-#        mistiming alarms before logging mode will be switched from debug to error (default 200, allowed 100 - 500)	
-#
-	
-Anticheat.Movement.MistimingAlarms = 200	
-
 #   AccountInstancesPerHour
 #        Description: Controls the max amount of different instances player can enter within hour
 #        Default:     5
@@ -2933,6 +2902,55 @@ PlayerDump.DisallowPaths = 1
 PlayerDump.DisallowOverwrite = 1
 
 #
+#      GMIsland.PlayersNoAccess.Enable
+#        Prevent access for players to gm island
+#        Default: 1 - Enable
+#                 0 - Disable
+
+GMIsland.PlayersNoAccess.Enable = 1
+
+#
+#      GMIsland.Ban.Enable
+#        Enable to ban players that tries to access GM Island without proper Access
+#        Default: 0 - Disable
+#                 1 - Enable
+
+GMIsland.Ban.Enable = 0
+
+#
+###################################################################################################
+
+###################################################################################################
+#    Anticheat.Movement.Enable By jacob
+#        Enable Movement Anticheat
+#        Default: 1 - on
+#                 0 - off
+#
+
+Anticheat.Movement.Enable = 1
+
+#
+#    Anticheat.Movement.TeleportToPlaneAlarms
+#        maximum alarms before logging mode will be switched from debug to error (default 50, allowed 20 - 100)
+#
+
+Anticheat.Movement.TeleportToPlaneAlarms = 50
+
+#
+#    Anticheat.Movement.MistimingDelta
+#        mistiming intelval between client and serverside (default 15000 ms, allowed 5000 - 50000 ms)
+#
+
+Anticheat.Movement.MistimingDelta = 15000
+
+#
+#    Anticheat.Movement.MistimingAlarms
+#        mistiming alarms before logging mode will be switched from debug to error (default 200, allowed 100 - 500)
+#
+
+Anticheat.Movement.MistimingAlarms = 200
+
+#
 #     Anticheat.Enable
 #        Description: Enables or disables the Anticheat System functionality
 #        Default:     1 - (Enabled)
@@ -2978,21 +2996,10 @@ Anticheat.MaxReportsForDailyReport = 70
 Anticheat.Ban = 1
 
 #
-#      GMIsland.PlayersNoAccess.Enable
-#        Prevent access for players to gm island
-#        Default: 1 - Enable
-#                 0 - Disable
+###################################################################################################
 
-GMIsland.PlayersNoAccess.Enable = 1
-
-#
-#      GMIsland.Ban.Enable
-#        Enable to ban players that tries to access GM Island without proper Access
-#        Default: 0 - Disable
-#                 1 - Enable
-
-GMIsland.Ban.Enable = 0
-
+###################################################################################################
+#    WINTERGRASP!
 #
 #   OutdoorPvP.Wintergrasp.Enabled
 #       Determines whether the Wintergrasp battle is enabled or not.
@@ -3114,6 +3121,12 @@ OutdoorPvP.Wintergrasp.Antifarm.Atk = 5
 #              (Default: 5)
 
 OutdoorPvP.Wintergrasp.Antifarm.Def = 5
+
+#
+###################################################################################################
+
+###################################################################################################
+#    AuctionHouseBot!
 
 #
 #    AuctionHouseBot.DEBUG
@@ -3464,6 +3477,8 @@ AuctionHouseBot.GlyphBidPriceMax = 0
 #        Description: Management for channels with flag CHANNEL_DBC_FLAG_CITY_ONLY.	
 #        Default: 1 - (Enabled, Channels with flag CHANNEL_DBC_FLAG_CITY_ONLY will be activated in the cities only (blizzlike))	
 #                 0 - (Disabled, Channels with flag CHANNEL_DBC_FLAG_CITY_ONLY will connected at any place)
-	
-Channel.CityOnlyFlag = 1	
+
+Channel.CityOnlyFlag = 1
+
 #
+###################################################################################################
