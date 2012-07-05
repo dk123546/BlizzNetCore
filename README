@@ -1,10 +1,18 @@
-= ProyectoWarcraftEMU (TrinityCore) -- General information =
+##########################################################
+#  ____  _ _         _   _      _    ____                #
+# | __ )| (_)_______| \ | | ___| |_ / ___|___  _ __ ___  #
+# |  _ \| | |_  /_  /  \| |/ _ \ __| |   / _ \| '__/ _ \ #
+# | |_) | | |/ / / /| |\  |  __/ |_| |__| (_) | | |  __/ #
+# |____/|_|_/___/___|_| \_|\___|\__|\____\___/|_|  \___| #
+#                                                        #
+##########################################################
 
 Copyright (C) TrinityCore  (http://www.trinitycore.org)
 Copyright (C) PWarcraft    (http://www.proyectowarcraft.es)
 Copyright (C) Northstrider (http://www.github.com/northstrider)
 Copyright (C) Scriptdev2   (http://www.scriptdev2.com)
 Copyright (C) Shutok       (http://www.github.com/shutok)
+Copyright (C) GaryFisher   (http://www.github.com/garyfisher)
 
   Trinity Core is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
