@@ -2528,6 +2528,13 @@ Battleground.Random.ResetHour = 6
 Arena.MaxRatingDifference = 150
 
 #
+# Arena.RatedUpdateTimer
+# Description: Time between checks (in milliseconds) for matchups in rated arena
+# Default: 5000 - (5 seconds)
+
+Arena.RatedUpdateTimer = 5000
+
+#
 #    Arena.RatingDiscardTimer
 #        Description: Time (in milliseconds) after which rating differences are ignored when
 #                     setting up matches.
