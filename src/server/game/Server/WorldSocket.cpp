@@ -78,7 +78,7 @@ struct ServerPktHeader
         return 2+(isLargePacket()?3:2);
     }
 
-    bool isLargePacket()
+    bool isLargePacket() const
     {
         return size > 0x7FFF;
     }
@@ -966,6 +966,8 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
     sha.UpdateBigNumbers (&k, NULL);
     sha.Finalize();
 
+    std::string address = GetRemoteAddress();
+
     if (memcmp (sha.GetDigest(), digest, 20))
     {
         packet.Initialize (SMSG_AUTH_RESPONSE, 1);
@@ -973,13 +975,11 @@ int WorldSocket::HandleAuthSession (WorldPacket& recvPacket)
 
         SendPacket (packet);
 
-        sLog->outError ("WorldSocket::HandleAuthSession: Sent Auth Response (authentification failed).");
+        sLog->outError("WorldSocket::HandleAuthSession: Authentication failed for account: %u ('%s') address: %s", id, account.c_str(), address.c_str());
         return -1;
     }
 
-    std::string address = GetRemoteAddress();
-
-    sLog->outStaticDebug ("WorldSocket::HandleAuthSession: Client '%s' authenticated successfully from %s.",
+    sLog->outStaticDebug("WorldSocket::HandleAuthSession: Client '%s' authenticated successfully from %s.",
                 account.c_str(),
                 address.c_str());
 
