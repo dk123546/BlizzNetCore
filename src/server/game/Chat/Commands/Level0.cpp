@@ -101,7 +101,10 @@ bool ChatHandler::HandleServerInfoCommand(const char* /*args*/)
     std::string uptime = secsToTimeString(sWorld->GetUptime());
     uint32 updateTime = sWorld->GetUpdateTime();
 
-    SendSysMessage(_FULLVERSION);
+    //PSendSysMessage(_FULLVERSION);
+    PSendSysMessage("Core: BlizzNetCore");
+    PSendSysMessage("Rev: XX.07.2012");
+    PSendSysMessage("Sponsors: http://BlizzNet.PL");
     PSendSysMessage(LANG_CONNECTED_PLAYERS, playersNum, maxPlayersNum);
     PSendSysMessage(LANG_CONNECTED_USERS, activeClientsNum, maxActiveClientsNum, queuedClientsNum, maxQueuedClientsNum);
     PSendSysMessage(LANG_UPTIME, uptime.c_str());

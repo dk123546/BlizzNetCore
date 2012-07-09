@@ -50,13 +50,38 @@ void WorldSession::HandleDuelAcceptedOpcode(WorldPacket& recvPacket)
     plTarget->duel->startTimer = now;
 	
 	// reset cooldowns and HP/Mana	
-    player->SetHealth(player->GetMaxHealth());
+    /* player->SetHealth(player->GetMaxHealth());
     plTarget->SetHealth(plTarget->GetMaxHealth());
 	
     if (player->getPowerType() == POWER_MANA) player->SetPower(POWER_MANA, player->GetMaxPower(POWER_MANA));
     if (plTarget->getPowerType() == POWER_MANA) plTarget->SetPower(POWER_MANA, plTarget->GetMaxPower(POWER_MANA));
     //only for cooldowns which < 15 min	
-    if (!player->GetMap()->IsDungeon()) { player->RemoveArenaSpellCooldowns(); plTarget->RemoveArenaSpellCooldowns(); }
+    if (!player->GetMap()->IsDungeon()) { player->RemoveArenaSpellCooldowns(); plTarget->RemoveArenaSpellCooldowns(); } */
+
+    // reset cooldowns and HP/Mana
+    if (player->GetAreaId() == 12 || player->GetAreaId() == 14)
+    {
+        player->SetHealth(player->GetMaxHealth());
+        plTarget->SetHealth(plTarget->GetMaxHealth());
+        player->RemoveArenaSpellCooldowns();
+        plTarget->RemoveArenaSpellCooldowns();
+        player->RemoveAurasDueToSpell(25771);
+        plTarget->RemoveAurasDueToSpell(25771);
+
+        if (player->getPowerType() == POWER_MANA)
+            player->SetPower(POWER_MANA, player->GetMaxPower(POWER_MANA));
+        if (plTarget->getPowerType() == POWER_MANA)
+            plTarget->SetPower(POWER_MANA, plTarget->GetMaxPower(POWER_MANA));
+    }
+
+    if (player->getPowerType() == POWER_RAGE)
+        player->SetPower(POWER_RAGE, 0);
+    if (plTarget->getPowerType() == POWER_RAGE)
+        plTarget->SetPower(POWER_RAGE, 0);
+    if (player->getPowerType() == POWER_RUNIC_POWER)
+        player->SetPower(POWER_RUNIC_POWER, 0);
+    if (plTarget->getPowerType() == POWER_RUNIC_POWER)
+        plTarget->SetPower(POWER_RUNIC_POWER, 0);
 
     player->SendDuelCountdown(3000);
     plTarget->SendDuelCountdown(3000);
