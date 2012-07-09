@@ -1,0 +1,20 @@
+-- GunShip OFF!
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 36948;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 36939;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37184;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37032;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37030;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37003;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 36998;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37230;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (36968, 36969);
+UPDATE `creature_template` SET `ScriptName` = '', AIName = '' WHERE `entry` IN (36982, 36978);
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry`IN (37117, 37116);
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37547;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37227;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (36957, 36950);
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (36960, 36961);
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37540;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 37215;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` IN (36838, 36839);
+UPDATE `gameobject_template` SET `ScriptName` = '' WHERE `entry` IN (201580, 201812);
