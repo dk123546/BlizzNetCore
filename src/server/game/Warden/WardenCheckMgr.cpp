@@ -48,17 +48,6 @@ void WardenCheckMgr::LoadWardenChecks()
         return;
     }
 
-    // For reload case
-    for (uint16 i = 0; i < CheckStore.size(); ++i)
-         delete CheckStore[i];
-
-    CheckStore.clear();
-
-    for (CheckResultContainer::iterator itr = CheckResultStore.begin(); itr != CheckResultStore.end(); ++itr)
-         delete itr->second;
-
-    CheckResultStore.clear();
-
     QueryResult result = WorldDatabase.Query("SELECT MAX(id) FROM warden_checks");
 
     if (!result)
@@ -165,13 +154,13 @@ void WardenCheckMgr::LoadWardenOverrides()
         return;
     }
 
-    Field* fields = result->Fetch();
-
     uint32 count = 0;
+
+    ACE_WRITE_GUARD(ACE_RW_Mutex, g, _checkStoreLock);
 
     do
     {
-        fields = result->Fetch();
+        Field* fields = result->Fetch();
 
         uint16 checkId = fields[0].GetUInt16();
         uint8  action  = fields[1].GetUInt8();
