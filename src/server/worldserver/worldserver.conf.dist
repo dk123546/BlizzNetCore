@@ -2535,6 +2535,21 @@ Arena.MaxRatingDifference = 150
 Arena.RatedUpdateTimer = 5000
 
 #
+# Arena.ProgressiveMMRTimer
+# Description: Time between increases in MMR search range
+# Default: 30000 (30 seconds)
+
+Arena.ProgressiveMMRTimer = 30000
+
+#
+# Arena.ProgressiveMMRStepSize
+# Description: Amount by which the search range is increased
+# for each passing of ProgressiveMMRTimer
+# Default: 50
+
+Arena.ProgressiveMMRStepSize = 100
+
+#
 #    Arena.RatingDiscardTimer
 #        Description: Time (in milliseconds) after which rating differences are ignored when
 #                     setting up matches.
