@@ -1,9 +1,13 @@
 ############################################################################################
+#                 ____  _ _         _   _      _    ____                                   #
+#                | __ )| (_)_______| \ | | ___| |_ / ___|___  _ __ ___                     #
+#                |  _ \| | |_  /_  /  \| |/ _ \ __| |   / _ \| '__/ _ \                    #
+#                | |_) | | |/ / / /| |\  |  __/ |_| |__| (_) | | |  __/                    #
+#                |____/|_|_/___/___|_| \_|\___|\__|\____\___/|_|  \___|                    #
 #                                                                                          #
-#                             Todolist for ProjectRisingDarkness                           #
+#                                      Changelog                                           #
 #                                                                                          #
 ############################################################################################
-
 
 ############################################################################################
 # CORE                                                                                     #
@@ -11,8 +15,7 @@
 #                                                                                          #
 ############################################################################################
 
--Merge with TrinityCore (daily or weekly)
-
+- Test
 
 ############################################################################################
 # Scripts                                                                                  #
@@ -20,18 +23,7 @@
 #                                                                                          #
 ############################################################################################
 
--fix mimirons jump to his phase2 bot (he dont move to him)
--fix Ulduar releated achievements
--Algalons achievements (kill without player death)
--add missing script events to Pit ofSaron
--fix pereodic repeating of the intro event (roundabout 4 times in 1 instance o.O)
--add better summon positions in HoR at Lichking
--add better position for icewall summons
--add better wintergrasp codes
--intro movement with effects and phase 2 movement for malygos @ EoE
--complete and add sindragosas event gauntlet
-
-
+- Test
 
 ############################################################################################
 # Database                                                                                 #
@@ -39,20 +31,4 @@
 #                                                                                          #
 ############################################################################################
 
--add pumpkin respawn time in hallowsend event
--move the SQL files to old folder if a new DB in the DB repo is released (or update pack)
--add loot for mimirons cache freya and thorim too
--add c++ support for ulduar trashmobs
--fix portal teleport in frozen halls
--add sound id's at svalas script texts
--add waypoints to icc upper spire trashmobs at plague part
-
-#############################################################################################
-# Ulduar Gauntlet work:                                                                     #
-#############################################################################################
-
-- add text and event for start the ulduar event (open ulduar shield, texts, movement, tanks selectable)
-- add texts to the 4 keeper towers
-- add fix the spawn script for stormbeacons
-- add script for leviathan intro and prevent respawn of mobs
-- fix everything else that needs to be fixed
+- Test
