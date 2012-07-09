@@ -105,10 +105,10 @@ class instance_icecrown_citadel : public InstanceMapScript
                 TeamInInstance = 0;
                 HeroicAttempts = MaxHeroicAttempts;
                 LadyDeathwisperElevatorGUID = 0;
-                // Gunship Battle
+                /* // Gunship Battle
                 FirstSquadState = 0;
                 SecondSquadState = 0;
-//                SpireSquadState = 0;
+                //SpireSquadState = 0;
                 SkybreakerBossGUID = 0;
                 OrgrimmarBossGUID = 0;
                 DeathbringerSaurfangGbGUID = 0;
@@ -116,7 +116,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 DeathbringerSaurfangNotVisualGUID = 0;
                 MuradinBronzebeardNotVisualGUID = 0;
                 GbBattleMageGUID = 0;
-                // Gunship Battle
+                // Gunship Battle */
                 DeathbringerSaurfangGUID = 0;
                 DeathbringerSaurfangDoorGUID = 0;
                 DeathbringerSaurfangEventGUID = 0;
@@ -193,7 +193,7 @@ class instance_icecrown_citadel : public InstanceMapScript
 
                 switch (creature->GetEntry())
                 {
-                     case NPC_GB_SKYBREAKER:
+                     /* case NPC_GB_SKYBREAKER:
                          SkybreakerBossGUID = creature->GetGUID();
                          break;
                      case NPC_GB_ORGRIMS_HAMMER:
@@ -214,7 +214,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                      case NPC_GB_SKYBREAKER_SORCERERS:
                      case NPC_GB_KORKRON_BATTLE_MAGE:
                          GbBattleMageGUID = creature->GetGUID();
-                         break;
+                         break; */
                     case NPC_KOR_KRON_GENERAL:
                         if (TeamInInstance == ALLIANCE)
                             creature->UpdateEntry(NPC_ALLIANCE_COMMANDER, ALLIANCE);
@@ -603,7 +603,7 @@ class instance_icecrown_citadel : public InstanceMapScript
             {
                 switch (type)
                 {
-                   //Gunship battle
+                   /* //Gunship battle
                     case DATA_SKYBREAKER_BOSS:
                         return SkybreakerBossGUID;
                     case DATA_ORGRIMMAR_HAMMER_BOSS:
@@ -618,7 +618,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         return MuradinBronzebeardNotVisualGUID;
                     case DATA_GB_BATTLE_MAGE:
                         return GbBattleMageGUID;
-                   //
+                   // */
                     case DATA_DEATHBRINGER_SAURFANG:
                         return DeathbringerSaurfangGUID;
                     case DATA_SAURFANG_EVENT_NPC:
@@ -698,7 +698,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                                 elevator->SetUInt32Value(GAMEOBJECT_LEVEL, 0);
                                 elevator->SetGoState(GO_STATE_READY);
                             }
-                        PrepareGunshipEvent(); // Spawn Gunship Event
+                        //PrepareGunshipEvent(); // Spawn Gunship Event
                         }
                         break;
                     case DATA_DEATHBRINGER_SAURFANG:
@@ -1305,7 +1305,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 }
             }
 
-            void PrepareGunshipEvent()
+            /* void PrepareGunshipEvent()
             {
                 if (isPrepared || GetBossState(DATA_GUNSHIP_EVENT) == DONE)
                     return;
@@ -1493,12 +1493,12 @@ class instance_icecrown_citadel : public InstanceMapScript
                   }
                 }
                 isPrepared = true;
-            }
+            } */
 
         protected:
             EventMap Events;
             uint64 LadyDeathwisperElevatorGUID;
-            // Gunship battle
+            /* // Gunship battle
             uint32 FirstSquadState;
             uint32 SecondSquadState;
             uint64 SkybreakerBossGUID;
@@ -1508,7 +1508,7 @@ class instance_icecrown_citadel : public InstanceMapScript
             uint64 DeathbringerSaurfangNotVisualGUID;
             uint64 MuradinBronzebeardNotVisualGUID;
             uint64 GbBattleMageGUID;
-           //
+           // */
             uint64 DeathbringerSaurfangGUID;
             uint64 DeathbringerSaurfangDoorGUID;
             uint64 DeathbringerSaurfangEventGUID;   // Muradin Bronzebeard or High Overlord Saurfang
@@ -1548,11 +1548,11 @@ class instance_icecrown_citadel : public InstanceMapScript
             uint64 FrozenBolvarGUID;
             uint64 PillarsChainedGUID;
             uint64 PillarsUnchainedGUID;
-            uint64 GunShipControllerGUID;
+            /* uint64 GunShipControllerGUID;
             uint64 GBMuradinGUID;
             uint64 GBSaurfangGUID;
             uint64 GBSkybreakerGUID;
-            uint64 GBOgrimsHammerGUID;
+            uint64 GBOgrimsHammerGUID; */
             uint32 TeamInInstance;
             uint32 ColdflameJetsState;
             uint32 FrostwyrmCount;
