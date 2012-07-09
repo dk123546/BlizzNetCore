@@ -5005,12 +5005,7 @@ SpellCastResult Spell::CheckCast(bool strict)
         {
             case SPELL_EFFECT_DUMMY:
             {
-                if (m_spellInfo->Id == 51582)          // Rocket Boots Engaged
-                {
-                    if (m_caster->IsInWater())
-                        return SPELL_FAILED_ONLY_ABOVEWATER;
-                }
-                else if (m_spellInfo->SpellIconID == 156)    // Holy Shock
+                if (m_spellInfo->SpellIconID == 156)    // Holy Shock
                 {
                     // spell different for friends and enemies
                     // hurt version required facing
