@@ -33,6 +33,17 @@
 
 ~>XX.07.2012:
 
+- Fix Restore pet loading.
+
+~>09.07.2012:
+
+- Merge to TC (Game/WorldSocket).
+- Core/Movement: Fix pushback issues and client freeze.
+- Fix Flare and Death Grip.
+- Fix rocket boots.
+- Merge to TC (Game/Warden).
+- Core/Visibility: Change the default visibility distance for instances and battlegrounds to blizz-like values.
+- Core/MapManager: Fix logic in SetMapUpdateInterval()
 - Core/BattlegroundMgr: Introduce RatedUpdateTimer for time between checks for rated arena matchups, RatingDiscardTimer is an unfit choice.
 - Core/BattlegroundQueue: Implement progressive MMR search range.
 
