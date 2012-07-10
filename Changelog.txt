@@ -33,6 +33,14 @@
 
 ~>XX.07.2012:
 
+- Core/Spells: Rune Strike should only be available for use once after a block/parry. (Merge to TC (Apr 04, 2012))
+- Core/Spells: correctly fix the issue with dispel over time auras.
+- Core/Spells: Blade Barrier should not proc from autoattacks.
+- Core/Spells: The first target of a chained spell should be explicit.
+- Core/Spells: Fixed SPELL_GROUP_STACK_RULE_EXCLUSIVE_SAME_EFFECT on several types of spell effects.
+- Core/Spells: attempt to fix penance doing nothing on "friendly" non faction targets. should return invalid targets.
+- Core/DB: Adjust AP-bonuses for Hunter Volley (thanks to Jildor).
+- Core/Spells: Correct diminishing returns for Horror category.
 - Fix Restore pet loading.
 
 ~>09.07.2012:
