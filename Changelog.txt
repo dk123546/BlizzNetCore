@@ -33,6 +33,9 @@
 
 ~>XX.07.2012:
 
+- Core/Spells: Do not proc spells with PROC_FLAG_DONE_SPELL_MAGIC_DMG_CLASS_(NEG|POS) if there is no target, reimplemented Storm, Earth and Fire talent in another way.
+- Core/Spells: Fixed Riptide bonus on Chain Heal
+- Fix Earthen Power
 - Fixed consuming of Grounding Totem when it's not redirected any spell.
 - Added spells for Fire Elemental Totem and Earth Elemental Totem
 - Fix Brambles - hardcoding increased dmg of Treants.
