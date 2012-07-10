@@ -33,6 +33,7 @@
 
 ~>XX.07.2012:
 
+- Fixed consuming of Grounding Totem when it's not redirected any spell.
 - Added spells for Fire Elemental Totem and Earth Elemental Totem
 - Fix Brambles - hardcoding increased dmg of Treants.
 - Fix Elixir of Minor Fortitude
