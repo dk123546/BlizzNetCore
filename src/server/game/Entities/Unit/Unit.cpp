@@ -12817,8 +12817,13 @@ void Unit::setDeathState(DeathState s)
         // remove aurastates allowing special moves
         ClearAllReactives();
         ClearDiminishings();
-        if (!isPet() || (isPet() && IsInWorld())) //fix crash for dead pets (hacky)
+        if (IsInWorld())
         {
+            // Only clear MotionMaster for entities that exists in world
+            // Avoids crashes in the following conditions :
+            // * Using 'call pet' on dead pets
+            // * Using 'call stabled pet'
+            // * Logging in with dead pets
             GetMotionMaster()->Clear(false);
             GetMotionMaster()->MoveIdle();
         }
