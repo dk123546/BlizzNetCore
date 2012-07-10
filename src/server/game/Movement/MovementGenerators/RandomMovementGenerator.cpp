@@ -51,12 +51,14 @@ void RandomMovementGenerator<Creature>::_setRandomLocation(Creature& creature)
 
     destX = respX + distanceX;
     destY = respY + distanceY;
+    destZ = creature.GetPositionZMinusOffset();
+    creature.UpdateAllowedPositionZ(destX, destY, destZ);
 
     // prevent invalid coordinates generation
     Trinity::NormalizeMapCoord(destX);
     Trinity::NormalizeMapCoord(destY);
 
-    travelDistZ = distanceX*distanceX + distanceY*distanceY;
+    /* travelDistZ = distanceX*distanceX + distanceY*distanceY;
 
     if (is_air_ok)                                          // 3D system above ground and above water (flying mode)
     {
@@ -94,7 +96,7 @@ void RandomMovementGenerator<Creature>::_setRandomLocation(Creature& creature)
                     return;
             }
         }
-    }
+    } */
 
     if (is_air_ok)
         i_nextMoveTime.Reset(0);
