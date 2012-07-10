@@ -33,6 +33,8 @@
 
 ~>XX.07.2012:
 
+- Added spells for Fire Elemental Totem and Earth Elemental Totem
+- Fix Brambles - hardcoding increased dmg of Treants.
 - Fix Elixir of Minor Fortitude
 - Fix Warr T8 4p bonus
 - Fix DK T8 4p bonus
