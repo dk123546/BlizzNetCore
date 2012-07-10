@@ -31,8 +31,17 @@
 #                                                                                          #
 ############################################################################################
 
-~>XX.07.2012:
+~>10.07.2012:
 
+- Core/Spells: Implemented SPELL_ATTR4_IGNORE_RESISTANCES. (Merge to TC (Apr 09, 2012))
+- Add a missing spell (Blessed Life) to spell_dbc.
+- Core/Spells: Health leech spells should still do damage even if the caster is dead (Devouring Plague).
+- Core/Item: Fix possible exploit stacking critical strike when switching weapons during disarm.
+- Scripts/Spells: When Frost Warding negates the damage taken, the Frost Ward should remain intact.
+- Core/Spells: Fixed rogue T10 2P and 4P bonuses.
+- Core/Spells: Fixes the rune cooldown when a hit mises the target.
+- Core/Players: Reward XP to dead players inside battlegrounds .
+- Core/Visibility: Pets should be always visible for group mates.
 - Fix Gnomeregan Pride.
 - Core/Spells: Do not proc spells with PROC_FLAG_DONE_SPELL_MAGIC_DMG_CLASS_(NEG|POS) if there is no target, reimplemented Storm, Earth and Fire talent in another way.
 - Core/Spells: Fixed Riptide bonus on Chain Heal.
