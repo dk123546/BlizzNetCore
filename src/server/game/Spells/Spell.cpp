@@ -2757,18 +2757,18 @@ void Spell::DoTriggersOnSpellHit(Unit* unit, uint8 effMask)
     if (!m_hitTriggerSpells.empty())
     {
         int _duration = 0;
-        for (HitTriggerSpells::const_iterator i = m_hitTriggerSpells.begin(); i != m_hitTriggerSpells.end(); ++i)
+        for (HitTriggerSpellList::const_iterator i = m_hitTriggerSpells.begin(); i != m_hitTriggerSpells.end(); ++i)
         {
-            if (CanExecuteTriggersOnHit(effMask, i->first) && roll_chance_i(i->second))
+            if (CanExecuteTriggersOnHit(effMask, i->triggeredByAura) && roll_chance_i(i->chance))
             {
-                m_caster->CastSpell(unit, i->first, true);
-                sLog->outDebug(LOG_FILTER_SPELLS_AURAS, "Spell %d triggered spell %d by SPELL_AURA_ADD_TARGET_TRIGGER aura", m_spellInfo->Id, i->first->Id);
+                m_caster->CastSpell(unit, i->triggeredSpell, true);
+                sLog->outDebug(LOG_FILTER_SPELLS_AURAS, "Spell %d triggered spell %d by SPELL_AURA_ADD_TARGET_TRIGGER aura", m_spellInfo->Id, i->triggeredSpell->Id);
 
                 // SPELL_AURA_ADD_TARGET_TRIGGER auras shouldn't trigger auras without duration
                 // set duration of current aura to the triggered spell
-                if (i->first->GetDuration() == -1)
+                if (i->triggeredSpell->GetDuration() == -1)
                 {
-                    if (Aura* triggeredAur = unit->GetAura(i->first->Id, m_caster->GetGUID()))
+                    if (Aura* triggeredAur = unit->GetAura(i->triggeredSpell->Id, m_caster->GetGUID()))
                     {
                         // get duration from aura-only once
                         if (!_duration)
@@ -3112,11 +3112,20 @@ void Spell::cast(bool skipCheck)
         return;
     }
 
-    // now that we've done the basic check, now run the scripts
-    // should be done before the spell is actually executed
     if (Player* playerCaster = m_caster->ToPlayer())
+    {
+        // now that we've done the basic check, now run the scripts
+        // should be done before the spell is actually executed
         sScriptMgr->OnPlayerSpellCast(playerCaster, this, skipCheck);
 
+        // As of 3.0.2 pets begin attacking their owner's target immediately
+        // Let any pets know we've attacked something. Check DmgClass for harmful spells only
+        // This prevents spells such as Hunter's Mark from triggering pet attack
+        if (this->GetSpellInfo()->DmgClass != SPELL_DAMAGE_CLASS_NONE)
+            if (Pet* playerPet = playerCaster->GetPet())
+                if (playerPet->isAlive() && playerPet->isControlled() && (m_targets.GetTargetMask() & TARGET_FLAG_UNIT))
+                    playerPet->AI()->OwnerAttacked(m_targets.GetObjectTarget()->ToUnit());
+    }
     SetExecutedCurrently(true);
 
     if (m_caster->GetTypeId() != TYPEID_PLAYER && m_targets.GetUnitTarget() && m_targets.GetUnitTarget() != m_caster)
@@ -7170,11 +7179,11 @@ void Spell::CallScriptAfterHitHandlers()
 
 void Spell::CallScriptAfterUnitTargetSelectHandlers(std::list<Unit*>& unitTargets, SpellEffIndex effIndex)
 {
-    for (std::list<SpellScript*>::iterator scritr = m_loadedScripts.begin(); scritr != m_loadedScripts.end() ; ++scritr)
+    for (std::list<SpellScript*>::iterator scritr = m_loadedScripts.begin(); scritr != m_loadedScripts.end(); ++scritr)
     {
         (*scritr)->_PrepareScriptCall(SPELL_SCRIPT_HOOK_UNIT_TARGET_SELECT);
         std::list<SpellScript::UnitTargetHandler>::iterator hookItrEnd = (*scritr)->OnUnitTargetSelect.end(), hookItr = (*scritr)->OnUnitTargetSelect.begin();
-        for (; hookItr != hookItrEnd ; ++hookItr)
+        for (; hookItr != hookItrEnd; ++hookItr)
             if ((*hookItr).IsEffectAffected(m_spellInfo, effIndex))
                 (*hookItr).Call(*scritr, unitTargets);
 
@@ -7182,14 +7191,13 @@ void Spell::CallScriptAfterUnitTargetSelectHandlers(std::list<Unit*>& unitTarget
     }
 }
 
-bool Spell::CanExecuteTriggersOnHit(uint8 effMask, SpellInfo const* spellInfo) const
+bool Spell::CanExecuteTriggersOnHit(uint8 effMask, SpellInfo const* triggeredByAura) const
 {
-    bool only_on_dummy = (spellInfo && (spellInfo->AttributesEx4 & SPELL_ATTR4_PROC_ONLY_ON_DUMMY));
-    // If triggered spell has SPELL_ATTR4_PROC_ONLY_ON_DUMMY then it can only proc on a casted spell with SPELL_EFFECT_DUMMY
-    // If triggered spell doesn't have SPELL_ATTR4_PROC_ONLY_ON_DUMMY then it can NOT proc on SPELL_EFFECT_DUMMY (needs confirmation)
+    bool only_on_caster = (triggeredByAura && (triggeredByAura->AttributesEx4 & SPELL_ATTR4_PROC_ONLY_ON_CASTER));
+    // If triggeredByAura has SPELL_ATTR4_PROC_ONLY_ON_CASTER then it can only proc on a casted spell with TARGET_UNIT_CASTER
     for (uint8 i = 0;i < MAX_SPELL_EFFECTS; ++i)
     {
-        if ((effMask & (1 << i)) && (only_on_dummy == (m_spellInfo->Effects[i].Effect == SPELL_EFFECT_DUMMY)))
+        if ((effMask & (1 << i)) && (!only_on_caster || (m_spellInfo->Effects[i].TargetA.GetTarget() == TARGET_UNIT_CASTER)))
             return true;
     }
     return false;
@@ -7241,9 +7249,14 @@ void Spell::PrepareTriggersExecutedOnHit()
             // calculate the chance using spell base amount, because aura amount is not updated on combo-points change
             // this possibly needs fixing
             int32 auraBaseAmount = (*i)->GetBaseAmount();
-            int32 chance = m_caster->CalculateSpellDamage(NULL, auraSpellInfo, auraSpellIdx, &auraBaseAmount);
             // proc chance is stored in effect amount
-            m_hitTriggerSpells.push_back(std::make_pair(spellInfo, chance * (*i)->GetBase()->GetStackAmount()));
+            int32 chance = m_caster->CalculateSpellDamage(NULL, auraSpellInfo, auraSpellIdx, &auraBaseAmount);
+            // build trigger and add to the list
+            HitTriggerSpell spellTriggerInfo;
+            spellTriggerInfo.triggeredSpell = spellInfo;
+            spellTriggerInfo.triggeredByAura = auraSpellInfo;
+            spellTriggerInfo.chance = chance * (*i)->GetBase()->GetStackAmount();
+            m_hitTriggerSpells.push_back(spellTriggerInfo);
         }
     }
 }

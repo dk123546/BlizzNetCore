@@ -33,6 +33,15 @@
 
 ~>XX.07.2012:
 
+- Fix Elixir of Minor Fortitude
+- Fix Warr T8 4p bonus
+- Fix DK T8 4p bonus
+- PeAI update
+- Core/Spells: Fix Rabbit Costume and Noblegarden Bunny
+- Core/Spells: Implement SPELL_ATTR4_PROC_ONLY_ON_CASTER properly.
+- Fixed Libram of Veracity proc
+- Core/Spells: Fix unrelenting assault not proccing aura when overpower is used while target is casting.
+- Core/Spells: Fixed Dancing Rune Weapon double-applying the duration bonus of the glyph.
 - Core/Spells: Rune Strike should only be available for use once after a block/parry. (Merge to TC (Apr 04, 2012))
 - Core/Spells: correctly fix the issue with dispel over time auras.
 - Core/Spells: Blade Barrier should not proc from autoattacks.
