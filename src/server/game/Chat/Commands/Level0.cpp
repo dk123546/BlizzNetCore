@@ -86,7 +86,7 @@ bool ChatHandler::HandleStartCommand(const char* /*args*/)
     }
 
     // cast spell Stuck
-    chr->CastSpell(chr, 8690, false);
+    chr->CastSpell(chr, 7355, false);
     return true;
 }
 
