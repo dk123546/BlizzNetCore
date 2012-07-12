@@ -31,6 +31,13 @@
 #                                                                                          #
 ############################################################################################
 
+~>XX.07.2012:
+
+- 
+- Core/Spells: Fix vigilance taunt cooldown spell targeting.
+- Collision/GameObjects: Corrected a possible logic fail.
+- Core/Movement: FIX!
+
 ~>10.07.2012:
 
 - Core/Spells: Implemented SPELL_ATTR4_IGNORE_RESISTANCES. (Merge to TC (Apr 09, 2012))

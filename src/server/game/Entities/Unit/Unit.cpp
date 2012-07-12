@@ -3624,8 +3624,9 @@ void Unit::RemoveAurasDueToSpellByDispel(uint32 spellId, uint32 dispellerSpellId
                         {
                             // final heal
                             int32 healAmount = aurEff->GetAmount();
-                            int32 stack = dispelInfo.GetRemovedCharges();
-                            CastCustomSpell(this, 33778, &healAmount, &stack, NULL, true, NULL, NULL, aura->GetCasterGUID());
+                            if (Unit* caster = aura->GetCaster())
+                                healAmount = caster->SpellHealingBonus(this, aura->GetSpellInfo(), healAmount, HEAL, dispelInfo.GetRemovedCharges());
+                            CastCustomSpell(this, 33778, &healAmount, NULL, NULL, true, NULL, NULL, aura->GetCasterGUID());
 
                             // mana
                             if (Unit* caster = aura->GetCaster())
@@ -6010,6 +6011,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                 // Siphon Life
                 case 63108:
                 {
+                    if (!damage)
+                        break;
                     // Glyph of Siphon Life
                     if (HasAura(56216))
                         triggerAmount += triggerAmount / 4;
@@ -8212,6 +8215,16 @@ bool Unit::HandleAuraProc(Unit* victim, uint32 damage, Aura* triggeredByAura, Sp
                     CastCustomSpell(this, 70845, &basepoints0, NULL, NULL, true);
                     break;
                 }
+                // Recklessness
+                case 1719:
+                {
+                    //! Possible hack alert
+                    //! Don't drop charges on proc, they will be dropped on SpellMod removal
+                    //! Before this change, it was dropping two charges per attack, one in ProcDamageAndSpellFor, and one in RemoveSpellMods.
+                    //! The reason of this behaviour is Recklessness having three auras, 2 of them can not proc (isTriggeredAura array) but the other one can, making the whole spell proc.
+                    *handled = true;
+                    break;
+                }
                 default:
                     break;
             }
@@ -8329,11 +8342,17 @@ bool Unit::HandleProcTriggerSpell(Unit* victim, uint32 damage, AuraEffect* trigg
                 }
                 break;
             case SPELLFAMILY_WARRIOR:
-                if (auraSpellInfo->Id == 50421)             // Scent of Blood
+                if (auraSpellInfo->Id == 50421) // Scent of Blood
                 {
                     CastSpell(this, 50422, true);
                     RemoveAuraFromStack(auraSpellInfo->Id);
                     return false;
+                }
+                if (auraSpellInfo->Id == 50720)
+                {
+                    target = triggeredByAura->GetCaster();
+                    if (!target)
+                        return false;
                 }
                 break;
             case SPELLFAMILY_WARLOCK:
@@ -17552,7 +17571,7 @@ bool Unit::SetWalk(bool enable)
     return true;
 }
 
-bool Unit::SetDisableGravity(bool disable)
+bool Unit::SetDisableGravity(bool disable, bool packetOnly /*= false*/)
 {
     if (disable == IsLevitating())
         return false;
