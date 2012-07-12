@@ -2863,9 +2863,8 @@ void AuraEffect::HandleAuraAllowFlight(AuraApplication const* aurApp, uint8 mode
     target->SetCanFly(apply);
     if (!apply)
     {
-        target->RemoveUnitMovementFlag(MOVEMENTFLAG_FLYING);
-        target->AddUnitMovementFlag(MOVEMENTFLAG_FALLING);
-        target->m_movementInfo.SetFallTime(0);
+        target->RemoveUnitMovementFlag(MOVEMENTFLAG_MASK_MOVING_FLY);
+        target->GetMotionMaster()->MoveFall();
     }
 
     Player* player = target->ToPlayer();
@@ -2896,10 +2895,7 @@ void AuraEffect::HandleAuraWaterWalk(AuraApplication const* aurApp, uint8 mode, 
     if (apply)
         target->AddUnitMovementFlag(MOVEMENTFLAG_WATERWALKING);
     else
-    {
         target->RemoveUnitMovementFlag(MOVEMENTFLAG_WATERWALKING);
-        target->AddUnitMovementFlag(MOVEMENTFLAG_FALLING);
-    }
 
     target->SendMovementWaterWalking();
 }
