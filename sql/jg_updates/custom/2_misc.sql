@@ -11,3 +11,9 @@ INSERT INTO spell_linked_spell (spell_trigger, spell_effect, type, comment) VALU
 (20711, -19753, 0, "Spirit of Redemption removes Divine Sacrafice"),
 (20711, -19752, 2, "Spirit of Redemption immune to Divine Sacrafice"),
 (20711, -19753, 2, "Spirit of Redemption immune to Divine Sacrafice");
+
+-- Fixs Solace of the Defeated and Solace of the Fallen
+DELETE FROM `spell_proc_event` WHERE entry=67698;
+DELETE FROM `spell_proc_event` WHERE entry=67752;
+INSERT INTO `spell_proc_event` (`entry`, `SchoolMask`, `SpellFamilyName`, `SpellFamilyMask0`, `SpellFamilyMask1`, `SpellFamilyMask2`, `procFlags`, `procEx`, `ppmRate`, `CustomChance`, `Cooldown`) VALUES (67698, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 1);
+INSERT INTO `spell_proc_event` (`entry`, `SchoolMask`, `SpellFamilyName`, `SpellFamilyMask0`, `SpellFamilyMask1`, `SpellFamilyMask2`, `procFlags`, `procEx`, `ppmRate`, `CustomChance`, `Cooldown`) VALUES (67752, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 1);

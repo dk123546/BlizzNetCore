@@ -33,6 +33,7 @@
 
 ~>XX.07.2012:
 
+- Fixs Solace of the Defeated and Solace of the Fallen
 - Core/Spells: Add 45 seconds proc cooldown to Blackened Naaru Silver.
 - Player/Items: Fix the item durations when the item is stored in a bag different than the default backpack.
 - Core/Spells: Reapply glyph bonuses that depend on stance when you shapeshift into that instance.
