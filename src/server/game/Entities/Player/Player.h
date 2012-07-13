@@ -489,7 +489,7 @@ enum PlayerFieldByte2Flags
 
 enum MirrorTimerType
 {
-    FATIGUE_TIMER      = -1,
+    FATIGUE_TIMER      = 0,
     BREATH_TIMER       = 1,
     FIRE_TIMER         = 2
 };

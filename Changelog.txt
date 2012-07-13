@@ -33,7 +33,24 @@
 
 ~>XX.07.2012:
 
-- 
+- Core/Spells: Add 45 seconds proc cooldown to Blackened Naaru Silver.
+- Player/Items: Fix the item durations when the item is stored in a bag different than the default backpack.
+- Core/Spells: Reapply glyph bonuses that depend on stance when you shapeshift into that instance.
+- Core/Spells: Prevent Siphon Life from proccing on Corruption apply.
+- Core/Spells: Fixed Recklessness charges being dropped twice.
+- Core/Warden: Workaround for an OpenSSL bug in the ARC4 stream cipher initialization that causes crashes on some OS.
+- Gnomeregan Pride misc fix. (By Diton xD!)
+- Absorbs vs Inner etc...
+- Core/Movement: Changed casting check in TargetedMovementGenerator to be able to freely manipulate cast+move interaction in scripts.
+- Core/Loading: Make GameObject loot loading faster by removing an unneeded call to an expensive method.
+- Core/Spells: You should not be able to cast Create Healthstone if you already have one in your inventory.
+- Core/Spells: Apply Lifebloom's final bloom bonus from Empowered Rejuvenation also on expire.
+- Core/Spells: Fix Unrelenting assault proc only on players.
+- Core/Spells: Fixed Lifebloom's final bloom benefit from Empowered Rejuvenation.
+- Core/Spells: Corrected Rupture critical hits, it wont make other dots(incorrectly) crit any longer.
+- Core/Spells: Execute spell procs after the healing effects of a spell.
+- DB/Spells: Fix Honor Among Thieves proc.
+- Core/Attributes: change some attribute names to better describe what they are.
 - Core/Spells: Fix vigilance taunt cooldown spell targeting.
 - Collision/GameObjects: Corrected a possible logic fail.
 - Core/Movement: FIX!
