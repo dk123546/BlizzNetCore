@@ -951,7 +951,7 @@ struct dummy_dragonAI : public ScriptedAI
                 return;
 
             // Twilight Revenge to main boss
-            if (Unit* pSartharion = Unit::GetUnit((*me), instance->GetData64(DATA_SARTHARION)))
+            if (Unit* pSartharion = Unit::GetUnit(*me, instance->GetData64(DATA_SARTHARION)))
                 if (pSartharion->isAlive())
                 {
                     pSartharion->RemoveAurasDueToSpell(uiSpellId);
@@ -1578,7 +1578,7 @@ public:
             entry = 0;
         }
 
-        void SpellHitTarget(Unit* target, const SpellInfo *spell)
+        /* void SpellHitTarget(Unit* target, const SpellInfo *spell)
         {
             if (spell->Id == SPELL_FLAME_TSUNAMI_DMG_AURA)
                 if (!target->isTotem())
@@ -1588,7 +1588,7 @@ public:
                         target->CastSpell(0, SPELL_FLAME_TSUNAMI_LEAP);
                         target->SetOrientation(orientation);
                     }
-        }
+        } */
 
         void UpdateAI(const uint32 diff)
         {
