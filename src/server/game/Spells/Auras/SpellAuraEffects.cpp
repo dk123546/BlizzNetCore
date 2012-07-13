@@ -2232,7 +2232,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode, 
                         break;
                     // Gnomeregan Pride
                     case 75531:
-                        target->SetDisplayId(target->getGender() == GENDER_MALE ? 31654 : 31655);
+                        target->SetDisplayId(31654);
                         break;
                     // Dread Corsair
                     case 50517:
