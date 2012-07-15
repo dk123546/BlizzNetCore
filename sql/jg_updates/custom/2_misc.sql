@@ -63,3 +63,12 @@ INSERT INTO `spell_ranks`(first_spell_id, spell_id, rank) VALUES (60955, 60955, 
 -- Fix Halion Portal
 UPDATE `gameobject_template` SET flags = 32, faction = 35, ScriptName="go_halion_portal" WHERE `entry` IN (202794, 202796);
 UPDATE `gameobject_template` SET `data10`=74807, `WDBVerified`=-12340 WHERE `entry`=202794;
+
+-- Fix Trauma
+DELETE FROM `spell_proc_event` WHERE `entry` IN (71865,71868);
+INSERT INTO `spell_proc_event` (`entry`,`SchoolMask`,`SpellFamilyName`,`SpellFamilyMask0`,`SpellFamilyMask1`,`SpellFamilyMask2`,`procFlags`,`procEx`,`ppmRate`,`CustomChance`,`CoolDown`) VALUES (71865, 0, 0, 0, 0, 0, 0, procEx|131072, 0, 0, 0); -- Trauma normal
+INSERT INTO `spell_proc_event` (`entry`,`SchoolMask`,`SpellFamilyName`,`SpellFamilyMask0`,`SpellFamilyMask1`,`SpellFamilyMask2`,`procFlags`,`procEx`,`ppmRate`,`CustomChance`,`CoolDown`) VALUES (71868, 0, 0, 0, 0, 0, 0, procEx|131072, 0, 0, 0); -- Trauma heroic
+
+-- Fix Blackheart the Inciter (http://old.wowhead.com/npc=18667)
+INSERT INTO `main_world_trinity`.`disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES
+('0', '33676', '7', '', '', 'Blackheart the Inciter - Incite Chaos'), ('0', '33684', '7', '', '', 'Blackheart the Inciter - Incite Chaos b');
