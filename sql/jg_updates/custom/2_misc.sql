@@ -17,3 +17,8 @@ DELETE FROM `spell_proc_event` WHERE entry=67698;
 DELETE FROM `spell_proc_event` WHERE entry=67752;
 INSERT INTO `spell_proc_event` (`entry`, `SchoolMask`, `SpellFamilyName`, `SpellFamilyMask0`, `SpellFamilyMask1`, `SpellFamilyMask2`, `procFlags`, `procEx`, `ppmRate`, `CustomChance`, `Cooldown`) VALUES (67698, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 1);
 INSERT INTO `spell_proc_event` (`entry`, `SchoolMask`, `SpellFamilyName`, `SpellFamilyMask0`, `SpellFamilyMask1`, `SpellFamilyMask2`, `procFlags`, `procEx`, `ppmRate`, `CustomChance`, `Cooldown`) VALUES (67752, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 1);
+
+-- Fix shadowfiend
+DELETE FROM `spell_script_names` WHERE `ScriptName`='spell_pri_shadowfiend';
+INSERT INTO `spell_script_names` (`spell_id`,`ScriptName`) VALUES
+(34433,'spell_pri_shadowfiend');

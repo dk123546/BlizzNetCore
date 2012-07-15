@@ -33,6 +33,7 @@
 
 ~>XX.07.2012:
 
+- Fix shadowfiend.
 - Core/Spells: Dont remove auras on stance change if the stance you are moving to is also allowed by the spell. (Merge to TC (Apr 14, 2012))
 - Core/Spells: Fixed Bloodworm's heal effect and damage.
 - Battlegrounds/WSG: Fixed door LoS in Warsong Gulch.
