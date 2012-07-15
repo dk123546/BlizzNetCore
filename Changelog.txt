@@ -33,6 +33,13 @@
 
 ~>XX.07.2012:
 
+- Fix Anti-Magic Shell.
+- Fix dispel magic combat.
+- Fix Improved Healthstone.
+- Fix Crash.
+- Fix evade bug.
+- Fix Lifebloom.
+- Fix Spirit of Redemption damage bug.
 - Fix shadowfiend.
 - Core/Spells: Dont remove auras on stance change if the stance you are moving to is also allowed by the spell. (Merge to TC (Apr 14, 2012))
 - Core/Spells: Fixed Bloodworm's heal effect and damage.

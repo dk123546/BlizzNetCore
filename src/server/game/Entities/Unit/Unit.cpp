@@ -13900,7 +13900,9 @@ void Unit::CleanupBeforeRemoveFromMap(bool finalCleanup)
     ClearComboPointHolders();
     DeleteThreatList();
     getHostileRefManager().setOnlineOfflineState(false);
-    GetMotionMaster()->Clear(false);                    // remove different non-standard movement generators.
+
+    if (IsInWorld())
+        GetMotionMaster()->Clear(false);                    // remove different non-standard movement generators.
 }
 
 void Unit::CleanupsBeforeDelete(bool finalCleanup)
@@ -15600,7 +15602,7 @@ void Unit::Kill(Unit* victim, bool durabilityLoss)
 
                 // FORM_SPIRITOFREDEMPTION and related auras
                 victim->CastSpell(victim, 27827, true, NULL, aurEff);
-                victim->CastSpell(victim, 19753, true);
+                victim->CastSpell(victim, 27792, true);
                 spiritOfRedemption = true;
                 break;
             }

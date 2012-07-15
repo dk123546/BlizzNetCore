@@ -2618,6 +2618,9 @@ void Spell::EffectDispel(SpellEffIndex effIndex)
     }
     m_caster->SendMessageToSet(&dataSuccess, true);
 
+    if (m_caster->IsValidAttackTarget(unitTarget) && !m_caster->isInCombat())
+    m_caster->CombatStart(unitTarget);
+
     // On success dispel
     // Devour Magic
     if (m_spellInfo->SpellFamilyName == SPELLFAMILY_WARLOCK && m_spellInfo->Category == SPELLCATEGORY_DEVOUR_MAGIC)
