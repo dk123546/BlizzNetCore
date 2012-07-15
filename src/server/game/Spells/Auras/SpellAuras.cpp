@@ -1760,8 +1760,9 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     else
                         caster->RemoveAurasDueToSpell(100001);
                 }
+             }
              // Health Funnel
-             else if (GetSpellProto()->SpellFamilyFlags[0] & 0x01000000 && target != caster)
+             else if (GetSpellInfo()->SpellFamilyFlags[0] & 0x01000000 && target != caster)
              {
                  // Improved Health Funnel
                  AuraEffect * aurEff = caster->GetAuraEffectOfRankedSpell(18703, 0);
@@ -1776,7 +1777,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                      target->RemoveAurasDueToSpell(60956);
                  }
              }
-            }
             break;
     }
 }
