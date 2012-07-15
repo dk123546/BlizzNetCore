@@ -33,6 +33,11 @@
 
 ~>XX.07.2012:
 
+- Core/Spells: Dont remove auras on stance change if the stance you are moving to is also allowed by the spell. (Merge to TC (Apr 14, 2012))
+- Core/Spells: Fixed Bloodworm's heal effect and damage.
+- Battlegrounds/WSG: Fixed door LoS in Warsong Gulch.
+- Core/BG: Fix a logic mistake in ResetStat timer.
+- Core/BG: When starting a battleground teleport the player to start location if it goes outside of the allowed "waiting" area (for example, getting out of the "bubble" in EotS).
 - Fixs Solace of the Defeated and Solace of the Fallen
 - Core/Spells: Add 45 seconds proc cooldown to Blackened Naaru Silver.
 - Player/Items: Fix the item durations when the item is stored in a bag different than the default backpack.
