@@ -59,3 +59,7 @@ INSERT INTO `spell_bonus_data` (`entry`,`direct_bonus`,`dot_bonus`,`ap_bonus`,`a
 (47877, 0, 0, 0, 0, 'Warlock - HS - Fel Healthstone (with 2/2 Improved Healthstone)');
 
 INSERT INTO `spell_ranks`(first_spell_id, spell_id, rank) VALUES (60955, 60955, 1),(60955, 60956, 2);
+
+-- Fix Halion Portal
+UPDATE `gameobject_template` SET flags = 32, faction = 35, ScriptName="go_halion_portal" WHERE `entry` IN (202794, 202796);
+UPDATE `gameobject_template` SET `data10`=74807, `WDBVerified`=-12340 WHERE `entry`=202794;

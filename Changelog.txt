@@ -33,6 +33,7 @@
 
 ~>XX.07.2012:
 
+- Fix Halion Portal and sindragosa.
 - Fix Anti-Magic Shell.
 - Fix dispel magic combat.
 - Fix Healthstone Coefficient.
