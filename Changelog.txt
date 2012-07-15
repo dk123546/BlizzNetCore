@@ -35,7 +35,8 @@
 
 - Fix Anti-Magic Shell.
 - Fix dispel magic combat.
-- Fix Improved Healthstone.
+- Fix Healthstone Coefficient.
+- Fix Health Funnel.
 - Fix Crash.
 - Fix evade bug.
 - Fix Lifebloom.
