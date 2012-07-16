@@ -2086,7 +2086,7 @@ class Player : public Unit, public GridObject<Player>
         void ModifyHonorPoints(int32 value, SQLTransaction* trans = NULL);      //! If trans is specified, honor save query will be added to trans
         void ModifyArenaPoints(int32 value, SQLTransaction* trans = NULL);      //! If trans is specified, arena point save query will be added to trans
         uint32 GetMaxPersonalArenaRatingRequirement(uint32 minarenaslot) const;
-               void UpdateKnownTitles();
+        void UpdateKnownTitles();
         void SetHonorPoints(uint32 value);
         void SetArenaPoints(uint32 value);
 

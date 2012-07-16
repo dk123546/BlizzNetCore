@@ -7243,7 +7243,7 @@ bool Player::RewardHonor(Unit* uVictim, uint32 groupsize, int32 honor, bool pvpt
 
     uint64 victim_guid = 0;
     uint32 victim_rank = 0;
-       uint32 rank_diff = 0;    
+    uint32 rank_diff = 0;    
 
     // need call before fields update to have chance move yesterday data to appropriate fields before today data change.
     UpdateHonorFields();
@@ -7282,34 +7282,29 @@ bool Player::RewardHonor(Unit* uVictim, uint32 groupsize, int32 honor, bool pvpt
             //  [15..28] Horde honor titles and player name
             //  [29..38] Other title and player name
             //  [39+]    Nothing
-            uint32 victim_title = victim->GetUInt32Value(PLAYER_CHOSEN_TITLE);
-                                                        // Get Killer titles, CharTitlesEntry::bit_index
-            // Ranks:
-            //  title[1..14]  -> rank[5..18]
-            //  title[15..28] -> rank[5..18]
-            //  title[other]  -> 0
-                // PLAYER__FIELD_KNOWN_TITLES describe which titles player can use,
-                // so we must find biggest pvp title , even for killer to find extra honor value
-                uint32 vtitle = victim->GetUInt32Value(PLAYER__FIELD_KNOWN_TITLES);
-                //uint32 victim_title = 0;
-                uint32 ktitle = GetUInt32Value(PLAYER__FIELD_KNOWN_TITLES);
-                uint32 killer_title = 0;
-                if (PLAYER_TITLE_MASK_ALL_PVP & ktitle)
+            // PLAYER__FIELD_KNOWN_TITLES describe which titles player can use,
+            // so we must find biggest pvp title , even for killer to find extra honor value
+            uint32 vtitle = victim->GetUInt32Value(PLAYER__FIELD_KNOWN_TITLES);
+            uint32 victim_title = 0;
+            uint32 ktitle = GetUInt32Value(PLAYER__FIELD_KNOWN_TITLES);
+            uint32 killer_title = 0;
+            if (PLAYER_TITLE_MASK_ALL_PVP & ktitle)
+            {
+                for (int i = ((GetTeam() == ALLIANCE) ? 1:HKRANKMAX);i!=((GetTeam() == ALLIANCE) ? HKRANKMAX : (2*HKRANKMAX-1));i++)
                 {
-                    for (int i = ((GetTeam() == ALLIANCE) ? 1:HKRANKMAX);i!=((GetTeam() == ALLIANCE) ? HKRANKMAX : (2*HKRANKMAX-1));i++)
-                    {
-                        if (ktitle & (1<<i))
-                            killer_title = i;
-                    }
+                    if (ktitle & (1<<i))
+                        killer_title = i;
                 }
-                if (PLAYER_TITLE_MASK_ALL_PVP & vtitle)
+            }
+            if (PLAYER_TITLE_MASK_ALL_PVP & vtitle)
+            {
+                for (int i = ((victim->GetTeam() == ALLIANCE) ? 1:HKRANKMAX);i!=((victim->GetTeam() == ALLIANCE) ? HKRANKMAX : (2*HKRANKMAX-1));i++)
                 {
-                    for (int i = ((victim->GetTeam() == ALLIANCE) ? 1:HKRANKMAX);i!=((victim->GetTeam() == ALLIANCE) ? HKRANKMAX : (2*HKRANKMAX-1));i++)
-                    {
-                        if (vtitle & (1<<i))
-                            victim_title = i;
-                    }
+                    if (vtitle & (1<<i))
+                        victim_title = i;
                 }
+            }
+            // Get Killer titles, CharTitlesEntry::bit_index
 
                 // Get Killer titles, CharTitlesEntry::bit_index
                 // Ranks:
@@ -7335,7 +7330,8 @@ bool Player::RewardHonor(Unit* uVictim, uint32 groupsize, int32 honor, bool pvpt
 
 
             honor_f = ceil(Trinity::Honor::hk_honor_at_level_f(k_level) * (v_level - k_grey) / (k_level - k_grey));
-                       honor *= 1 + sWorld->getRate(RATE_PVP_RANK_EXTRA_HONOR)*(((float)rank_diff) / 10.0f);
+            honor *= 1 + sWorld->getRate(RATE_PVP_RANK_EXTRA_HONOR)*(((float)rank_diff) / 10.0f);
+
             // count the number of playerkills in one day
             ApplyModUInt32Value(PLAYER_FIELD_KILLS, 1, true);
             // and those in a lifetime
@@ -7343,7 +7339,7 @@ bool Player::RewardHonor(Unit* uVictim, uint32 groupsize, int32 honor, bool pvpt
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL);
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HK_CLASS, victim->getClass());
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HK_RACE, victim->getRace());
-                       UpdateKnownTitles();
+            UpdateKnownTitles();
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HONORABLE_KILL_AT_AREA, GetAreaId());
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HONORABLE_KILL, 1, 0, victim);
         }

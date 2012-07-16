@@ -860,7 +860,8 @@ void World::LoadConfigSettings(bool reload)
         sLog->outError("MinPetitionSigns (%i) must be in range 0..9. Set to 9.", m_int_configs[CONFIG_MIN_PETITION_SIGNS]);
         m_int_configs[CONFIG_MIN_PETITION_SIGNS] = 9;
     }
-    rate_values[RATE_PVP_RANK_EXTRA_HONOR] = ConfigMgr::GetFloatDefault("PvPRank.Rate.ExtraHonor", 1);
+
+    rate_values[RATE_PVP_RANK_EXTRA_HONOR] = ConfigMgr::GetFloatDefault("PvPRank.Rate.ExtraHonor", 0);
     std::string s_pvp_ranks = ConfigMgr::GetStringDefault("PvPRank.HKPerRank", "10,50,100,200,450,750,1300,2000,3500,6000,9500,15000,21000,30000");
     char *c_pvp_ranks = const_cast<char*>(s_pvp_ranks.c_str());
     for (int i = 0; i !=HKRANKMAX; i++)
