@@ -34,7 +34,7 @@ enum ReportTypes
     JUMP_HACK_REPORT,
     TELEPORT_PLANE_HACK_REPORT,
     CLIMB_HACK_REPORT,
-    
+
    // MAX_REPORT_TYPES
 };
 

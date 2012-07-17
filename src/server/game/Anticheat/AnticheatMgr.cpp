@@ -19,7 +19,7 @@
 
 #define CLIMB_ANGLE 1.9f
 
-AnticheatMgr::AnticheatMgr() 
+AnticheatMgr::AnticheatMgr()
 {
 }
 
@@ -73,12 +73,12 @@ void AnticheatMgr::FlyHackDetection(Player* player, MovementInfo movementInfo)
     uint32 key = player->GetGUIDLow();
     if (!m_Players[key].GetLastMovementInfo().HasMovementFlag(MOVEMENTFLAG_FLYING))
         return;
-    
+
     if (player->HasAuraType(SPELL_AURA_FLY) ||
         player->HasAuraType(SPELL_AURA_MOD_INCREASE_MOUNTED_FLIGHT_SPEED) ||
         player->HasAuraType(SPELL_AURA_MOD_INCREASE_FLIGHT_SPEED))
         return;
-    
+
     //sLog->outError("AnticheatMgr:: Fly-Hack detected player GUID (low) %u",player->GetGUIDLow());
     BuildReport(player,FLY_HACK_REPORT);
 }
@@ -97,12 +97,12 @@ void AnticheatMgr::TeleportPlaneHackDetection(Player* player, MovementInfo movem
     if (movementInfo.HasMovementFlag(MOVEMENTFLAG_FALLING))
         return;
 
-    if (player->getDeathState() == DEAD)
-        return;
+//    if (player->getDeathState() == DEAD_FALLING)
+//        return;
     float x, y, z;
     player->GetPosition(x, y, z);
     float ground_Z = player->GetMap()->GetHeight(x, y, z);
-    float z_diff = fabs(ground_Z - z);   
+    float z_diff = fabs(ground_Z - z);
 
     // we are not really walking there
     if (z_diff > 1.0f)
@@ -153,8 +153,8 @@ void AnticheatMgr::ClimbHackDetection(Player *player, MovementInfo movementInfo,
         return;
 
     // in this case we don't care if they are "legal" flags, they are handled in another parts of the Anticheat Manager.
-    if (player->IsInWater() || 
-        player->IsFlying() || 
+    if (player->IsInWater() ||
+        player->IsFlying() ||
         player->IsFalling())
         return;
 
@@ -182,8 +182,8 @@ void AnticheatMgr::SpeedHackDetection(Player* player,MovementInfo movementInfo)
 
     // We also must check the map because the movementFlag can be modified by the client.
     // If we just check the flag, they could always add that flag and always skip the speed hacking detection.
-    // 369 == DEEPRUN TRAM && 607 == SoTA
-    if (m_Players[key].GetLastMovementInfo().HasMovementFlag(MOVEMENTFLAG_ONTRANSPORT) && player->GetMapId() == 369 || player->GetMapId() == 607)
+    // 369 == DEEPRUN TRAM
+    if (m_Players[key].GetLastMovementInfo().HasMovementFlag(MOVEMENTFLAG_ONTRANSPORT) && (player->GetMapId() == 369 || player->GetMapId() == 607))
         return;
 
     uint32 distance2D = (uint32)movementInfo.pos.GetExactDist2d(&m_Players[key].GetLastMovementInfo().pos);
@@ -202,7 +202,7 @@ void AnticheatMgr::SpeedHackDetection(Player* player,MovementInfo movementInfo)
 
     // how many yards the player can do in one sec.
     uint32 speedRate = (uint32)(player->GetSpeed(UnitMoveType(moveType)) + movementInfo.j_xyspeed);
-    
+
     // how long the player took to move to here.
     uint32 timeDiff = getMSTimeDiff(m_Players[key].GetLastMovementInfo().time,movementInfo.time);
 
@@ -232,7 +232,7 @@ void AnticheatMgr::HandlePlayerLogin(Player* player)
     // we initialize the pos of lastMovementPosition var.
     m_Players[player->GetGUIDLow()].SetPosition(player->GetPositionX(),player->GetPositionY(),player->GetPositionZ(),player->GetOrientation());
     QueryResult resultDB = CharacterDatabase.PQuery("SELECT * FROM daily_players_reports WHERE guid=%u;",player->GetGUIDLow());
-    
+
     if (resultDB)
         m_Players[player->GetGUIDLow()].SetDailyReportState(true);
 }
@@ -278,7 +278,7 @@ bool AnticheatMgr::MustCheckTempReports(uint8 type)
 void AnticheatMgr::BuildReport(Player* player,uint8 reportType)
 {
     uint32 key = player->GetGUIDLow();
-   
+
     if (MustCheckTempReports(reportType))
     {
         uint32 actualTime = getMSTime();
@@ -303,7 +303,7 @@ void AnticheatMgr::BuildReport(Player* player,uint8 reportType)
     // generating creationTime for average calculation
     if (!m_Players[key].GetTotalReports())
         m_Players[key].SetCreationTime(getMSTime());
-    
+
     // increasing total_reports
     m_Players[key].SetTotalReports(m_Players[key].GetTotalReports()+1);
     // increasing specific cheat report
@@ -312,7 +312,7 @@ void AnticheatMgr::BuildReport(Player* player,uint8 reportType)
     // diff time for average calculation
     uint32 diffTime = getMSTimeDiff(m_Players[key].GetCreationTime(),getMSTime()) / IN_MILLISECONDS;
 
-    if (diffTime > 0)  
+    if (diffTime > 0)
     {
         // Average == Reports per second
         float average = float(m_Players[key].GetTotalReports()) / float(diffTime);
@@ -332,7 +332,7 @@ void AnticheatMgr::BuildReport(Player* player,uint8 reportType)
     {
         // display warning at the center of the screen, hacky way?
         std::string str = "";
-        if (sWorld->getBoolConfig(CONFIG_BAN_PLAYER))  //Make anticheat active.
+        if (sWorld->getBoolConfig(CONFIG_BAN_PLAYER)) //Make anticheat active.
         {
             if (m_Players[key].GetAverage() > 0.5f)
             {
@@ -368,7 +368,7 @@ void AnticheatMgr::AnticheatGlobalCommand(ChatHandler* handler)
         do
         {
             Field *fieldsDB = resultDB->Fetch();
-     
+
             uint32 guid = fieldsDB[0].GetUInt32();
             float average = fieldsDB[1].GetFloat();
             uint32 total_reports = fieldsDB[2].GetUInt32();
@@ -380,7 +380,7 @@ void AnticheatMgr::AnticheatGlobalCommand(ChatHandler* handler)
     }
 
     resultDB = CharacterDatabase.Query("SELECT guid,average,total_reports FROM players_reports_status WHERE total_reports != 0 ORDER BY total_reports DESC LIMIT 3;");
-        
+
     // this should never happen
     if (!resultDB)
     {
@@ -393,7 +393,7 @@ void AnticheatMgr::AnticheatGlobalCommand(ChatHandler* handler)
         do
         {
             Field *fieldsDB = resultDB->Fetch();
-     
+
             uint32 guid = fieldsDB[0].GetUInt32();
             float average = fieldsDB[1].GetFloat();
             uint32 total_reports = fieldsDB[2].GetUInt32();

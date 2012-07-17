@@ -1101,8 +1101,6 @@ class Player : public Unit, public GridObject<Player>
     public:
         explicit Player (WorldSession* session);
         ~Player ();
-
-        //AnticheatData anticheatData;
 		
         void CleanupsBeforeDelete(bool finalCleanup = true);
 
