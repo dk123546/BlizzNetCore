@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:
 
+- Fix totems LoS!
 - Fix Glyph of Totem of Wrath.
 - Fix Grounding Totem.
 
