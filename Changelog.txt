@@ -15,7 +15,7 @@
 #                                                                                          #
 ############################################################################################
 
-~>XX.07.2012:
+~>17.07.2012:
 
 - Implemented Crowd Control Delay.
 - Fix Slice and Dice and Honor Among Thieves. (By Diton Ooo Yeah!)
