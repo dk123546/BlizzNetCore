@@ -141,14 +141,7 @@ bool ChatHandler::HandleDismountCommand(const char* /*args*/)
 bool ChatHandler::HandleSaveCommand(const char* /*args*/)
 {
     Player* player = m_session->GetPlayer();
-    
-		// Jail by WarHead edited by LordPsyan
-    if (player->m_jail_isjailed)
-    {
-        SendSysMessage(LANG_JAIL_DENIED);
-        return true;
-    }
-  
+
     // save GM account without delay and output message
     if (!AccountMgr::IsPlayerAccount(m_session->GetSecurity()))
     {
@@ -162,7 +155,7 @@ bool ChatHandler::HandleSaveCommand(const char* /*args*/)
 
     // save if the player has last been saved over 20 seconds ago
     uint32 save_interval = sWorld->getIntConfig(CONFIG_INTERVAL_SAVE);
-    if (save_interval == 0 || (save_interval > 20*IN_MILLISECONDS && player->GetSaveTimer() <= save_interval - 20*IN_MILLISECONDS))
+    if (save_interval == 0 || (save_interval > 20 * IN_MILLISECONDS && player->GetSaveTimer() <= save_interval - 20 * IN_MILLISECONDS))
         player->SaveToDB();
 
     return true;
