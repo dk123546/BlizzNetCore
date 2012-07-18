@@ -17,6 +17,8 @@
 
 ~>XX.07.2012:
 
+- Fix Lifebloom's spell power coefficient. (By Diton Ooo Yeah!)
+- Fix Lifebloom's gain from Empowered Rejuvenation. (By Diton Ooo Yeah!)
 - Fix totems LoS!
 - Fix Glyph of Totem of Wrath.
 - Fix Grounding Totem.
