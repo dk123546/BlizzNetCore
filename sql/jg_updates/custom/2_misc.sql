@@ -90,3 +90,8 @@ INSERT INTO `spell_proc_event` VALUES (28305, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 0);
 -- Move Shadowfiend's Mana Leech Aura from spellscript to creature addon.
 DELETE FROM `spell_script_names` WHERE `ScriptName`= 'spell_pri_shadowfiend';
 UPDATE `creature_template_addon` SET `auras`= '28305' WHERE `entry`=19668;
+
+-- Fix not using Shadowstep while rooted.
+DELETE FROM `spell_script_names` WHERE `spell_id`=36554;
+INSERT INTO `spell_script_names` (`spell_id`,`ScriptName`) VALUES
+(36554,'spell_rog_shadowstep');
