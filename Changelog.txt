@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:.
 
+- Fix Blood-Queen Lana'thel.
 - Fix ICC: Lich King.
 - Fix Achievement: Not Even a Scratch. (Merge to TC (Apr 22, 2012))
 - Battleground/Strand of the Ancients: Fix broken gate state.
