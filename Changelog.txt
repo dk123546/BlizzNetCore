@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:.
 
+- Fixed crashes on despawning abominations during Professor Putricide's phase transition.
 - Fix Blood-Queen Lana'thel.
 - Fix ICC: Lich King.
 - Fix Achievement: Not Even a Scratch. (Merge to TC (Apr 22, 2012))
