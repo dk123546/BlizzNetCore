@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:
 
+- Fix Movement part 2.
 - Fix Movement part 1.
 - Fix not using Disengage while rooted.
 - Fix not using Shadowstep while rooted.
