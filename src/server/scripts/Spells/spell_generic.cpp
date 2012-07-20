@@ -561,6 +561,9 @@ enum eTrickOrTreatSpells
 {
     SPELL_TRICK                 = 24714,
     SPELL_TREAT                 = 24715,
+    SPELL_TRICKY_TREAT_SPEED    = 42919,
+    SPELL_TRICKY_TREAT_TRIGGER  = 42965,
+    SPELL_UPSET_TUMMY           = 42966,
     SPELL_TRICKED_OR_TREATED    = 24755
 };
 

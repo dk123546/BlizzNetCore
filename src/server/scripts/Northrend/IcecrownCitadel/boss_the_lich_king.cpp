@@ -2482,13 +2482,13 @@ class spell_the_lich_king_summon_into_air : public SpellScriptLoader
                 static Position const offset = {0.0f, 0.0f, 15.0f, 0.0f};
                 WorldLocation* dest = const_cast<WorldLocation*>(GetTargetDest());
                 dest->RelocateOffset(offset);
-                GetHitDest()->RelocateOffset(offset);
+                //GetHitDest()->RelocateOffset(offset);
                 // spirit bombs get higher
                 if (GetSpellInfo()->Effects[effIndex].MiscValue == NPC_SPIRIT_BOMB)
-                {
+                //{
                     dest->RelocateOffset(offset);
-                    GetHitDest()->RelocateOffset(offset);
-                }
+                //    GetHitDest()->RelocateOffset(offset);
+                //}
             }
 
             void Register()
