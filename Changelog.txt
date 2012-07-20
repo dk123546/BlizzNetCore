@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:.
 
+- Add Reset Cooldowns, Hp, Mana, Rage and Runic Power in Circle of Wills.
 - Fixed crashes on despawning abominations during Professor Putricide's phase transition.
 - Fix Blood-Queen Lana'thel.
 - Fix ICC: Lich King.

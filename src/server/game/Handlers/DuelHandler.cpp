@@ -48,18 +48,19 @@ void WorldSession::HandleDuelAcceptedOpcode(WorldPacket& recvPacket)
     time_t now = time(NULL);
     player->duel->startTimer = now;
     plTarget->duel->startTimer = now;
-	
-	// reset cooldowns and HP/Mana	
+
+    // reset cooldowns and HP/Mana	
     /* player->SetHealth(player->GetMaxHealth());
     plTarget->SetHealth(plTarget->GetMaxHealth());
-	
+
     if (player->getPowerType() == POWER_MANA) player->SetPower(POWER_MANA, player->GetMaxPower(POWER_MANA));
     if (plTarget->getPowerType() == POWER_MANA) plTarget->SetPower(POWER_MANA, plTarget->GetMaxPower(POWER_MANA));
     //only for cooldowns which < 15 min	
     if (!player->GetMap()->IsDungeon()) { player->RemoveArenaSpellCooldowns(); plTarget->RemoveArenaSpellCooldowns(); } */
 
-    // reset cooldowns and HP/Mana
-    if (player->GetAreaId() == 12 || player->GetAreaId() == 14)
+    // Reset Cooldowns, Hp, Mana, Rage and Runic Power.
+    //                         Elwynn Forest                Durotar                      Circle of Wills          
+    if (player->GetAreaId() == 12 || player->GetAreaId() == 14 || player->GetAreaId() == 4570)
     {
         player->SetHealth(player->GetMaxHealth());
         plTarget->SetHealth(plTarget->GetMaxHealth());
