@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:
 
+- Fix Priest: Shadowfiend.
 - Fix Improved Succubuss Duration.
 - Fix Lifebloom's spell power coefficient. (By Diton Ooo Yeah!)
 - Fix Lifebloom's gain from Empowered Rejuvenation. (By Diton Ooo Yeah!)
