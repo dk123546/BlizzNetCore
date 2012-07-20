@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:
 
+- Fix no combo points after Mind Control.
 - Fix Blessing of Ancient Kings (Val'anyr, Hammer of Ancient Kings).
 - Fix Priest: Shadowfiend.
 - Fix Improved Succubuss Duration.
