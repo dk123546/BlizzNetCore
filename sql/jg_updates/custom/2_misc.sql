@@ -95,3 +95,30 @@ UPDATE `creature_template_addon` SET `auras`= '28305' WHERE `entry`=19668;
 DELETE FROM `spell_script_names` WHERE `spell_id`=36554;
 INSERT INTO `spell_script_names` (`spell_id`,`ScriptName`) VALUES
 (36554,'spell_rog_shadowstep');
+
+-- ICC: Lich King fix Wicked Spirit
+DELETE FROM `creature` WHERE `id` = 39190;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`MovementType`) VALUES
+('xxx',39190,631,12,1,505.1563,-2536.863,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,502.6493,-2531.328,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,503.8246,-2508.141,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,495.3629,-2538.215,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,506.8715,-2515.552,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,481.3021,-2509.222,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,481.5382,-2527.332,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,500.0807,-2523.289,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,486.6632,-2517.747,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,513.8802,-2511.795,1069.596,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,499.6406,-2500.783,1069.656,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,513.7101,-2530.931,1069.596,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,502.6811,-2522.542,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,518.7483,-2521.240,1069.596,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,478.9774,-2517.446,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,489.0104,-2538.535,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,511.6320,-2522.373,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,500.8976,-2527.198,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,484.7934,-2533.592,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,490.4132,-2504.323,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,485.0298,-2527.724,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,494.2899,-2511.384,1069.598,0,10,10,1), -- Wicked Spirit
+('xxx',39190,631,12,1,491.7170,-2532.490,1069.598,0,10,10,1); -- Wicked Spirit
