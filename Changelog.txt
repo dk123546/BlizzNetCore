@@ -15,8 +15,18 @@
 #                                                                                          #
 ############################################################################################
 
-~>XX.07.2012:
+~>XX.07.2012:.
 
+- Fix Achievement: Not Even a Scratch. (Merge to TC (Apr 22, 2012))
+- Battleground/Strand of the Ancients: Fix broken gate state.
+- Increased default ground search range, 10 yards was insufficient for many flying creatures.
+- Attempt to fix some rare steady shot crashes.
+- Changed how boss creatures are identified, creature_template.
+- Disable LoS check for destroyed destructible buildings.
+- Set melee sheath as default only for creatures that do not have creature_addon data.
+- Fix holy shock cast on friendly opposing team going on cooldown and saying invalid target.
+- Fixed Concussion Blow damage part.
+- Attempt on converting updatewaterstate for use with units (pets and vehicles).
 - Fix Movement part 2.
 - Fix Movement part 1.
 - Fix not using Disengage while rooted.
