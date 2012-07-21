@@ -122,3 +122,6 @@ INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`,`
 ('xxx',39190,631,12,1,485.0298,-2527.724,1069.598,0,10,10,1), -- Wicked Spirit
 ('xxx',39190,631,12,1,494.2899,-2511.384,1069.598,0,10,10,1), -- Wicked Spirit
 ('xxx',39190,631,12,1,491.7170,-2532.490,1069.598,0,10,10,1); -- Wicked Spirit
+
+-- Fixes double healing from Death Strike.
+DELETE FROM `spell_script_names` WHERE `spell_id` = -66188;
