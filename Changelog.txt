@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:.
 
+- Elemental focus(shaman talent) correct proc.
 - Fixes double healing from Death Strike.
 - Add Reset Cooldowns, Hp, Mana, Rage and Runic Power in Circle of Wills.
 - Fixed crashes on despawning abominations during Professor Putricide's phase transition.
