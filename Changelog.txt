@@ -17,6 +17,7 @@
 
 ~>XX.07.2012:.
 
+- Fix Dancing Rune Weapon.
 - Elemental focus(shaman talent) correct proc.
 - Fixes double healing from Death Strike.
 - Add Reset Cooldowns, Hp, Mana, Rage and Runic Power in Circle of Wills.

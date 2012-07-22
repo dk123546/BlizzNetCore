@@ -129,3 +129,7 @@ DELETE FROM `spell_script_names` WHERE `spell_id` = -66188;
 -- Elemental focus(shaman talent) correct proc.
 DELETE FROM spell_proc_event WHERE entry = 16164;
 INSERT INTO spell_proc_event (entry, SchoolMask, SpellFamilyName, SpellFamilyMask0, SpellFamilyMask1, SpellFamilyMask2, procFlags, procEx, ppmRate, CustomChance, Cooldown) VALUES (16164, 0, 11, 2416967683, 4096, 0, 0, 2, 0, 0, 0);
+
+-- Fix Dancing Rune Weapon.
+INSERT INTO `spell_proc_event` (entry, procFlags) VALUES
+('49028','69652');
