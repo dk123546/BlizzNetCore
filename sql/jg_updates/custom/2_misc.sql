@@ -78,8 +78,8 @@ DELETE FROM spell_bonus_data WHERE entry = 33778;
 DELETE FROM spell_bonus_data WHERE entry = 33763;
 DELETE FROM spell_bonus_data WHERE entry = 48450;
 DELETE FROM spell_bonus_data WHERE entry = 48451;
-INSERT INTO spell_bonus_data (entry, direct_bonus, dot_bonus, ap_bonus, ap_dot_bonus, comment) VALUES
-(33778, 0, 0, 0, 0, 'Druid - Lifebloom's bloom'),
+INSERT INTO spell_bonus_data (entry, direct_bonus, dot_bonus, ap_bonus, ap_dot_bonus, comments) VALUES
+(33778, 0, 0, 0, 0, 'Druid - Lifeblooms bloom'),
 (33763, 0.516, 0.0952, 0, 0, 'Druid - Lifebloom Rank 1'),
 (48450, 0.516, 0.0952, 0, 0, 'Druid - Lifebloom Rank 2'), 
 (48451, 0.516, 0.0952, 0, 0, 'Druid - Lifebloom Rank 3');
