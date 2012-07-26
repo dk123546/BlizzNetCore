@@ -535,12 +535,12 @@ class boss_the_lich_king : public CreatureScript
 
             void EnterCombat(Unit* target)
             {
-                if (!instance->CheckRequiredBosses(DATA_THE_LICH_KING, target->ToPlayer()))
+                /* if (!instance->CheckRequiredBosses(DATA_THE_LICH_KING, target->ToPlayer()))
                 {
                     EnterEvadeMode();
                     instance->DoCastSpellOnPlayers(LIGHT_S_HAMMER_TELEPORT);
                     return;
-                }
+                } */
 
                 me->setActive(true);
                 DoZoneInCombat();
@@ -2082,7 +2082,7 @@ class spell_the_lich_king_infest : public SpellScriptLoader
 class spell_the_lich_king_necrotic_plague : public SpellScriptLoader
 {
     public:
-        spell_the_lich_king_necrotic_plague() :  SpellScriptLoader("spell_the_lich_king_necrotic_plague") { }
+        spell_the_lich_king_necrotic_plague() : SpellScriptLoader("spell_the_lich_king_necrotic_plague") { }
 
         class spell_the_lich_king_necrotic_plague_AuraScript : public AuraScript
         {
@@ -2130,46 +2130,37 @@ class spell_the_lich_king_necrotic_plague : public SpellScriptLoader
 class spell_the_lich_king_necrotic_plague_jump : public SpellScriptLoader
 {
     public:
-        spell_the_lich_king_necrotic_plague_jump() :  SpellScriptLoader("spell_the_lich_king_necrotic_plague_jump") { }
+        spell_the_lich_king_necrotic_plague_jump() : SpellScriptLoader("spell_the_lich_king_necrotic_plague_jump") { }
 
         class spell_the_lich_king_necrotic_plague_SpellScript : public SpellScript
         {
             PrepareSpellScript(spell_the_lich_king_necrotic_plague_SpellScript);
 
-            bool Load()
-            {
-                _hadAura = false;
-                return true;
-            }
-
-            void SelectTarget(std::list<Unit*>& targets)
-            {
-                targets.sort(Trinity::ObjectDistanceOrderPred(GetCaster()));
-                if (targets.size() < 2)
-                    return;
-
-                targets.resize(1);
-            }
-
-            void CheckAura()
-            {
-                if (GetHitUnit()->HasAura(GetSpellInfo()->Id))
-                    _hadAura = true;
-            }
-
             void AddMissingStack()
             {
-                if (GetHitAura() && !_hadAura && GetSpellValue()->EffectBasePoints[EFFECT_1] != AURA_REMOVE_BY_ENEMY_SPELL)
+                // Add stack if we were not removed by dispel
+                if (GetHitAura() && GetSpellValue()->EffectBasePoints[EFFECT_1] != AURA_REMOVE_BY_ENEMY_SPELL)
                     GetHitAura()->ModStackAmount(1);
+
+                // Add stack if target has LK spell on it
+                if (GetHitAura() && GetHitUnit())
+                {
+                    if (GetHitUnit()->HasAura(70337) || GetHitUnit()->HasAura(73912) || GetHitUnit()->HasAura(73913) || GetHitUnit()->HasAura(73914))
+                    {
+                        GetHitUnit()->RemoveAurasDueToSpell(70337);
+                        GetHitUnit()->RemoveAurasDueToSpell(73912);
+                        GetHitUnit()->RemoveAurasDueToSpell(73913);
+                        GetHitUnit()->RemoveAurasDueToSpell(73914);
+
+                        GetHitAura()->ModStackAmount(1);
+                    }
+                }
             }
 
             void Register()
             {
-                BeforeHit += SpellHitFn(spell_the_lich_king_necrotic_plague_SpellScript::CheckAura);
                 OnHit += SpellHitFn(spell_the_lich_king_necrotic_plague_SpellScript::AddMissingStack);
             }
-
-            bool _hadAura;
         };
 
         class spell_the_lich_king_necrotic_plague_AuraScript : public AuraScript
