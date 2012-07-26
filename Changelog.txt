@@ -17,6 +17,8 @@
 
 ~>XX.07.2012:
 
+- Fix ICC: Sindragosa.
+- Fix ICC: Lich King.
 - Fix Ulduar: Razorscale.
 - Fix Glyph of Totem of Wrath. (Proc the spells that have DEST target when there is no other target info.)
 
