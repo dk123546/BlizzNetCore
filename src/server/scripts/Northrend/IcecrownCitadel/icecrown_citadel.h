@@ -24,7 +24,7 @@
 
 #define ICCScriptName "instance_icecrown_citadel"
 
-uint32 const EncounterCount = 14;
+uint32 const EncounterCount = 13;
 uint32 const WeeklyNPCs = 9;
 uint32 const MaxHeroicAttempts = 50;
 
@@ -81,7 +81,6 @@ enum DataTypes
     DATA_VALITHRIA_DREAMWALKER      = 10,
     DATA_SINDRAGOSA                 = 11,
     DATA_THE_LICH_KING              = 12,
-    DATA_SINDRAGOSA_GAUNTLET        = 13,
 
     // Additional data
     DATA_SAURFANG_EVENT_NPC         = 13,
@@ -324,14 +323,6 @@ enum CreaturesIds
     NPC_WORLD_TRIGGER_INFINITE_AOI              = 36171,
     NPC_SPIRIT_BOMB                             = 39189,
     NPC_FROSTMOURNE_TRIGGER                     = 38584,
-
-    // Sindragosas Ward
-    NPC_SINDRAGOSAS_WARD                        = 37503,
-    NPC_NERUBAR_WEBWEAVER                       = 37502,
-    NPC_NERUBAR_CHAMPION                        = 37501,
-    NPC_NERUBAR_BROODLING                       = 37232,
-    NPC_FROSTWARDEN_WARRIOR                     = 37228,
-    NPC_FROSTWARDEN_SORCERESS                   = 37229,
 };
 
 enum GameObjectsIds
