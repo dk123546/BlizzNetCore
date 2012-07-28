@@ -17,6 +17,10 @@
 
 ~>XX.07.2012:
 
+- Fix item Mysterious Egg.
+- Fix Lifebloom.
+- Fix crash when doing "A Pawn on the Eternal Board".
+- Fix Crash Pit Of Saron.
 - Fix ICC: Sindragosa.
 - Fix ICC: Lich King.
 - Fix Ulduar: Razorscale.
