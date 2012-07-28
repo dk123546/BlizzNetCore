@@ -1040,26 +1040,7 @@ class spell_sindragosa_s_fury : public SpellScriptLoader
             bool Load()
             {
                 _targetCount = 0;
-
-                // This script should execute only in Icecrown Citadel
-                if (InstanceMap* instance = GetCaster()->GetMap()->ToInstanceMap())
-                    if (instance->GetInstanceScript())
-                        if (instance->GetScriptId() == sObjectMgr->GetScriptId(ICCScriptName))
-                            return true;
-
-                return false;
-            }
-
-            void SelectDest()
-            {
-                if (Position* dest = const_cast<WorldLocation*>(GetExplTargetDest()))
-                {
-                    float destX = float(rand_norm()) * 75.0f + 4350.0f;
-                    float destY = float(rand_norm()) * 75.0f + 2450.0f;
-                    float destZ = 205.0f; // random number close to ground, get exact in next call
-                    GetCaster()->UpdateGroundPositionZ(destX, destY, destZ);
-                    dest->Relocate(destX, destY, destZ);
-                }
+                return true;
             }
 
             void CountTargets(std::list<Unit*>& unitList)
@@ -1088,9 +1069,8 @@ class spell_sindragosa_s_fury : public SpellScriptLoader
 
             void Register()
             {
-                BeforeCast += SpellCastFn(spell_sindragosa_s_fury_SpellScript::SelectDest);
-                OnUnitTargetSelect += SpellUnitTargetFn(spell_sindragosa_s_fury_SpellScript::CountTargets, EFFECT_1, TARGET_UNIT_DEST_AREA_ENTRY);
                 OnEffectHitTarget += SpellEffectFn(spell_sindragosa_s_fury_SpellScript::HandleDummy, EFFECT_1, SPELL_EFFECT_DUMMY);
+                OnUnitTargetSelect += SpellUnitTargetFn(spell_sindragosa_s_fury_SpellScript::CountTargets, EFFECT_1, TARGET_UNIT_DEST_AREA_ENTRY);
             }
 
             uint32 _targetCount;
