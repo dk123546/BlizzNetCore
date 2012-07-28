@@ -1034,13 +1034,9 @@ class at_slave_rescued_pos : public AreaTriggerScript
            if(instance->GetData(DATA_SLAVE_OUTRO_GARFROST) == IN_PROGRESS)
            {
                instance->SetData(DATA_SLAVE_OUTRO_GARFROST, DONE);
-               if(Creature *rSlave = player->FindNearestCreature(36888, 50.0f, true))
-               {
-                     DoScriptText(SAY_RESCUED_HORDE_ALLIANCE, rSlave);
-                     rSlave->GetMotionMaster()->MovePoint(0, 831.654968f, 6.049870f, 509.910583f); // not correct 
-               }
-               uint8 i = 0;
-               GetCreatureListWithEntryInGrid(Rescued1, player, 36889, 50.0f);
+               
+               std::list<Creature*> Rescued1;
+               GetCreatureListWithEntryInGrid(Rescued1, player, 36889, 150.0f);
                 for(std::list<Creature*>::iterator itr = Rescued1.begin(); itr != Rescued1.end(); ++itr)
                 {
                    Creature *rescued = *itr;
@@ -1049,16 +1045,17 @@ class at_slave_rescued_pos : public AreaTriggerScript
 
                    if (rescued->isAlive())
                       rescued->GetMotionMaster()->MovePoint(0, 840.661987f, 5.974489f, 510.107910f);
-                      ++i;
-               }            
-               return false;
+               }         
+               if(Creature *rSlave = player->FindNearestCreature(36888, 150.0f, true))
+               {
+                     DoScriptText(SAY_RESCUED_HORDE_ALLIANCE, rSlave);
+                     rSlave->GetMotionMaster()->MovePoint(0, 831.654968f, 6.049870f, 509.910583f); // not correct 
+               }
+               return true;
             }
             
           return false;
         }
-        
-        private:
-        std::list<Creature*> Rescued1;
 };
 
 class at_geist_ambusher_pos : public AreaTriggerScript
